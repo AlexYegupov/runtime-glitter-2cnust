@@ -24,7 +24,7 @@ app.get('/', (req, res) => {
   const component = <App fallbackScreenClass={fallbackScreenClass} />;
   const content = ReactDomServer.renderToString(component);
 
-  res.send(`
+  const r = `
     <!DOCTYPE html>
     <html>
       <head>
@@ -32,13 +32,20 @@ app.get('/', (req, res) => {
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
       </head>
       <body>
+        11
         <div id="app">${content}</div>
         <script src="bundle.js"></script>
       </body>
     </html>
-  `);
+  `;
+  console.log('#############3');
+  console.log(content);
+  console.log('#############3');
+  res.send(r);
   console.info('react-grid-system example rendered server-side.');
 });
+
+app.use('/static', express.static('publ'));
 
 app.listen(port, () => {
   console.info('==> 🌎  Listening on port %s. Open up http://localhost:%s/ in your browser.', port, port);
